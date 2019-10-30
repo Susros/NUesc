@@ -86,7 +86,7 @@ while(True):
 
     # Save sound file
     wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
-    wf.setchannels(RESPEAKER_CHANNELS)
+    wf.setnchannels(RESPEAKER_CHANNELS)
     wf.setsampwidth(p.get_sample_size(p.get_format_from_width(RESPEAKER_WIDTH)))
     wf.setframerate(RESPEAKER_RATE)
     wf.writeframes(b''.join(frames))
