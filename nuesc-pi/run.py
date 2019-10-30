@@ -82,7 +82,7 @@ while(True):
 
     # Stop stream
     stream.stop_stream()
-    streamclose()
+    stream.close()
 
     # Save sound file
     wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
