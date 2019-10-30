@@ -20,17 +20,11 @@ from __future__ import print_function
 
 import os
 import sys
-import matplotlib.pyplot as plt
 import numpy
-import pandas
 import sklearn
-import tensorflow
-import librosa
 import pickle
 
-from IPython.display import display, Image
 from six.moves import cPickle, range
-from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
 

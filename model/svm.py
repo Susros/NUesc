@@ -12,13 +12,9 @@ import os
 import sys
 import matplotlib.pyplot as plt
 import numpy
-import pandas
 import sklearn
-import tensorflow
-import librosa
 import pickle
 
-from IPython.display import display, Image
 from six.moves import cPickle, range
 from sklearn.svm import SVC
 
