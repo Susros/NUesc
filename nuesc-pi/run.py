@@ -80,6 +80,18 @@ while(True):
         data = stream.read(CHUNK)
         frames.append(data)
 
+    # Stop stream
+    stream.stop_stream()
+    streamclose()
+
+    # Save sound file
+    wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
+    wf.setchannels(RESPEAKER_CHANNELS)
+    wf.setsampwidth(p.get_sample_size(p.get_format_from_width(RESPEAKER_WIDTH)))
+    wf.setframerate(RESPEAKER_RATE)
+    wf.writeframes(b''.join(frames))
+    wf.close()
+
     print("Done Recording !")
 
     #############################
