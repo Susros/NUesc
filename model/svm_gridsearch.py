@@ -42,7 +42,7 @@ for label_id in set(mfcc_dataframe['label_id']):
 	labels.append((label_id, set(mfcc_dataframe.loc[mfcc_dataframe['label_id'] == label_id]['label'])))
 
 # Grid search parameters
-param_C = [1e-4, 1e-3, 1e-2, 1e-1, 1.0, 1e+1, 1e+2, 1e+3, 1e+4, 1e+5, 1e+6, 1e+7, 1e+8]
+param_C = [1e-04, 1e-03, 1e-02, 1e-01, 1.0, 1e+01, 1e+02, 1e+03, 1e+04, 1e+05, 1e+06, 1e+07, 1e+08]
 param_gamma = [1e-11, 1e-10, 1e-09, 1e-08, 1e-07, 1e-06, 1e-05, 1e-04, 1e-03, 1e-02, 1e-01, 1.0, 10.0]
 
 # To store Grid Search accuracy
