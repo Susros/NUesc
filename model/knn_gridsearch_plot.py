@@ -20,7 +20,7 @@ param_metric = ["Euclidean", "Manhattan", "Chebyshev"]
 try:
     gridsearch = pickle.load(open(OUTPUT_DIR + 'knn_gridsearch.p', 'rb'))
 except IOError:
-    print("Could not load SVM Grid Search result. Please make sure to run SVM Grid Search before running this script.")
+    print("Could not load KNN Grid Search result. Please make sure to run KNN Grid Search before running this script.")
 
 '''
     Performance line chart

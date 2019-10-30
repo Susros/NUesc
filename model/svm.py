@@ -82,27 +82,3 @@ pickle.dump(svm, open(OUTPUT_DIR + "svm_model.p", 'wb'))
 
 print()
 print("SVM Model has been saved to '"+ OUTPUT_DIR +"'")
-
-########################################################################
-
-""" 
-	Confusion Matrix 
-	=================================
-	Get confusion matrix and plot it
-"""
-matrix = numpy.zeros([10, 10])
-
-for true, predicted in zip(validation_label, svc_prediction):
-	matrix[true, predicted] += 1
-
-# Plot Confusion
-plt.figure(figsize = [10, 10])
-plt.imshow(matrix, cmap = 'hot', interpolation = 'nearest', vmin = 0, vmax = 200)
-plt.colorbar()
-plt.title('SVM Confusion Map', fontsize = 18)
-plt.ylabel('Actual', fontsize = 18)
-plt.xlabel('predicted', fontsize = 18)
-plt.grid(b = False)
-plt.yticks(range(10), dict(labels).values(), fontsize = 14)
-plt.xticks(range(10), dict(labels).values(), fontsize = 14, rotation = 'vertical')
-plt.show()

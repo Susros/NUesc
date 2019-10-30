@@ -31,7 +31,7 @@ from sklearn import metrics
 # Output directory
 OUTPUT = 'output/'
 
-# Import MFCC Data Frame
+# Load MFCC Data Frame
 try:
     mfcc_dataframe = cPickle.load(open(OUTPUT + 'mfcc_feature.p', 'rb'))
 except IOError:
