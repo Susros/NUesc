@@ -32,11 +32,6 @@ const server = app.listen(process.env.PORT);
 // Web Socket
 var ws = socket(server);
 
-// Check web socket connection
-ws.on('connection', (s) => {
-    console.log("Socket connection received: " + s.id);
-});
-
 // Sound Class
 const soundClass = [
     'Air Conditioner',      
@@ -51,28 +46,22 @@ const soundClass = [
     'Street Music'          
 ]
 
-app.post('/detected', (req, res) => {
+// Check web socket connection
+ws.on('connection', (s) => {
+    console.log("Socket connection received: " + s.id);
 
-    const soundId = req.body.sound_id;
-
-    if (soundId < 0 || soundId >= soundClass.length) {
-        res.status(400).json({ message: 'Invalid sound ID.' });
-    } else {
-
-        ws.sockets.emit('detected', {
-            data: {
-                id: soundId,
-                event: soundClass[soundId]
+    s.on('pi/detected', (data) => {
+        s.emit('webapp/detected', {
+            data : {
+                id: data,
+                sound_event: soundClass[data]
             }
-        });
+        })
+    });
 
-        res.status(200).json({ 
-            data: {
-                id: soundId,
-                event: soundClass[soundId]
-            }
-        });
-    }
+    s.on('webapp/setsound', (data) => {
+        s.emit('pi/setsound', data);
+    });
 });
 
 app.get('/soundclass', (req, res) => {
