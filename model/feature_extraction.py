@@ -64,33 +64,33 @@ for i in range(10):
             mfccs = numpy.mean(librosa.feature.mfcc(y = y, sr = sr, n_mfcc = 40).T, axis = 0)
 
             # Compute a chromagram from a waveform or power spectrogram
-			chroma = numpy.mean(librosa.feature.chroma_stft(S = stft, sr = sr).T, axis = 0)
+            chroma = numpy.mean(librosa.feature.chroma_stft(S = stft, sr = sr).T, axis = 0)
 			
             # Compute a mel-scaled spectrogram
             mel = numpy.mean(librosa.feature.melspectrogram(y = y, sr = sr).T, axis = 0)
 
             # Compute spectral contrast
-			contrast = numpy.mean(librosa.feature.spectral_contrast(S = stft, sr = sr).T, axis = 0)
+            contrast = numpy.mean(librosa.feature.spectral_contrast(S = stft, sr = sr).T, axis = 0)
 
             # Computes the tonal centroid features
-			tonnetz = numpy.mean(librosa.feature.tonnetz(y = librosa.effects.harmonic(y), sr = sr).T, axis = 0)
+            tonnetz = numpy.mean(librosa.feature.tonnetz(y = librosa.effects.harmonic(y), sr = sr).T, axis = 0)
 
 			# 193 Features
-			features = numpy.vstack([numpy.empty((0, 193)), numpy.hstack([mfccs, chroma, mel, contrast, tonnetz])])
+            features = numpy.vstack([numpy.empty((0, 193)), numpy.hstack([mfccs, chroma, mel, contrast, tonnetz])])
 
         except:
             print("Exception: Cound not extract '" + sound_file + "'")
             continue
 
         # Get label
-		label_row = sound_metadata.loc[sound_metadata['slice_file_name'] == sound_file.split('/')[-1]].values.tolist()
-		label = label_row[0][-1]
+        label_row = sound_metadata.loc[sound_metadata['slice_file_name'] == sound_file.split('/')[-1]].values.tolist()
+        label = label_row[0][-1]
 		
 		# Folder number
-		fold = i + 1
+        fold = i + 1
 
 		# Add it to mfcc data
-		mfcc_data.append([features, features.shape, label, fold])
+        mfcc_data.append([features, features.shape, label, fold])
 
 # Construct MFCC Data Frame
 mfcc_dataframe = pandas.DataFrame(data = mfcc_data, columns = ["features", "shape", "label", "fold"])

@@ -43,6 +43,11 @@ Where g is gamma parameter and C is C parameter
 gridsearch_index = 0
 heatmap_data = []
 
+# For checking the best parameters
+highest_accuracy = 0
+highest_accuracy_C_index = 0
+highest_accuracy_gamma_index = 0
+
 for i in range(len(param_C)):
     
     # Chunk it for each parmaeter C
@@ -51,7 +56,14 @@ for i in range(len(param_C)):
     for j in range(len(param_gamma)):
         
         # Convert accuracy into percentage
-        chunk.append(round(gridsearch[gridsearch_index] * 100, 2))
+        accuracy_perct = round(gridsearch[gridsearch_index] * 100, 2)
+
+        chunk.append(accuracy_perct)
+
+        if (accuracy_perct > highest_accuracy):
+            highest_accuracy = accuracy_perct
+            highest_accuracy_C_index = i
+            highest_accuracy_gamma_index = j
 
         gridsearch_index += 1
 
@@ -59,4 +71,19 @@ for i in range(len(param_C)):
 
 ''' Plot Heatmap '''
 fig = go.Figure(data = go.Heatmap(z = heatmap_data, x = param_gamma, y = param_C))
+
+fig.update_layout(
+    title = 'SVM Grid Search',
+    xaxis_title = 'Gamma Parameter',
+    yaxis_title = 'C Parameter'
+)
+
 fig.show()
+
+''' Show the best parameters '''
+
+print("The best parameters:")
+print("==========================")
+print("C = ", param_C[highest_accuracy_C_index])
+print("Gamma = ", param_gamma[highest_accuracy_gamma_index])
+print("Accuracy = ", highest_accuracy)

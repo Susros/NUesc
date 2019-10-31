@@ -17,6 +17,7 @@ import pickle
 
 from six.moves import cPickle, range
 from sklearn.svm import SVC
+from sklearn.metrix import confusion_matrix
 
 # Output directory
 OUTPUT_DIR = 'output/'
@@ -82,3 +83,49 @@ pickle.dump(svm, open(OUTPUT_DIR + "svm_model.p", 'wb'))
 
 print()
 print("SVM Model has been saved to '"+ OUTPUT_DIR +"'")
+
+#####################################################
+
+''' Plot confusion matrix '''
+
+matrix = confusion_matrix(validation_label, svc_prediction)
+
+classes = [
+	'Air Conditioner',
+	'Car Horn',
+	'Children Playing',
+	'Dog Bark',
+	'Drilling',
+	'Engine Idling',
+	'Gun Shot',
+	'Jackhammer',
+	'Siren',
+	'Street Music'
+]
+
+# Normalise matrix
+matrix = matrix.astype('float') / matrix.sum(axis = 1)[:, numpy.newaxis]
+
+# Configure figure
+fig, ax = plt.subplots()
+im = ax.imgshow(matrix, interpolation = 'nearest', cmap = plt.cm.Blues)
+ax.figure.colorbar(im, ax = ax)
+ax.set(xticks = numpy.arange(matrix.shape[1]),
+	   yticks = numpy.arange(matrix.shape[0]),
+	   xticklabels = classes, yticklabels = classes,
+	   title = 'SVM Classification Confusion Matrix',
+	   ylabel = 'True Label',
+	   xlabel = 'Predicted Label')
+
+plt.setp(ax.get_xticklabels(), rotation = 45, ha = 'right', rotation_mode = 'anchor')
+
+thresh = matrix.max() / 2
+for i in range(matrix.shape[0]):
+	for j in range(matrix.shape[1]):
+		ax.text(j, i, format(matrix[i, j], '.2f'),
+				ha = 'center', va = 'center',
+				color = 'white' if matrix[i, j] > thresh else 'black')
+
+fig.tight_layout()
+
+plt.show()
