@@ -34,16 +34,16 @@ var ws = socket(server);
 
 // Sound Class
 const soundClass = [
-    'Air Conditioner',      
-    'Car Horn',             
-    'Children Playing',     
-    'Dog Bark',             
-    'Drilling',             
-    'Engine Idling',        
-    'Gun Shot',             
-    'Jackhammer',           
-    'Siren',                
-    'Street Music'          
+    'Air Conditioner',
+    'Car Horn',
+    'Children Playing',
+    'Dog Bark',
+    'Drilling',
+    'Engine Idling',
+    'Gun Shot',
+    'Jackhammer',
+    'Siren',
+    'Street Music'
 ]
 
 // Check web socket connection
