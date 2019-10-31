@@ -44,14 +44,14 @@ scores = []
 
 svm = SVC(C = C, gamma = GAMMA, kernel = 'rbf', decision_function_shape = 'ovr')
 
-''' Train SVM with 10-fold cross validation '''
+''' Train SVM with 4-fold cross validation '''
 
 print("Training SVM Model ")
 print("=========================")
 
 val_index = 10
 
-for n_fold in range(1, 11):
+for n_fold in range(1, 5):
 	print("Validation Fold: ", val_index)
 
 	train_data = numpy.array(list(mfcc_dataframe.loc[mfcc_dataframe['fold'] != val_index]['sample']))
