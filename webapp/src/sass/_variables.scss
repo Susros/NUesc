@@ -1,0 +1,7 @@
+// Typography
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+@function theme-color($key: "primary") {
+    @return map-get($theme-colors, $key);
+}
