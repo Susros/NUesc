@@ -19,12 +19,14 @@ const bodyParser   = require('body-parser');
 const helmet       = require('helmet');
 const cookieparser = require('cookie-parser');
 const socket       = require('socket.io');
+const cors         = require('cors');
 
 const app = express();
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieparser());
+app.use(cors({ credentials: true, origin: '*' }));
 
 // Listen
 const server = app.listen(process.env.PORT);
@@ -50,8 +52,8 @@ const soundClass = [
 ws.on('connection', (s) => {
     console.log("Socket connection received: " + s.id);
 
-    s.on('pi/detected', (data) => {
-        s.emit('webapp/detected', {
+    s.on('pi_detected', (data) => {
+        ws.emit('webapp_detected', {
             data : {
                 id: data,
                 sound_event: soundClass[data]
@@ -59,8 +61,12 @@ ws.on('connection', (s) => {
         })
     });
 
-    s.on('webapp/setsound', (data) => {
-        s.emit('pi/setsound', data);
+    s.on('webapp_setsound', (data) => {
+        ws.emit('pi_setsound', data);
+    });
+
+    s.on('pi_status', (data) => {
+        ws.emit('webapp_status', data);
     });
 });
 
