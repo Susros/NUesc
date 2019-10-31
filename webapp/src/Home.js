@@ -29,8 +29,11 @@ class Home extends Component {
         });
 
         socket.on('webapp_detected', data => {
-            console.log(data);
             document.getElementById("detected").innerHTML = data.data.sound_event + " Detected !";
+
+            setTimeout(() => {
+                document.getElementById("detected").innerHTML = "";
+            }, 3000);
         });
 
         socket.on('webapp_status', data => {
