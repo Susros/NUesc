@@ -151,4 +151,4 @@ while(True):
 
         # Let Server know it detected
         if (pred[0] == TO_DETECT):
-            sio.emit('pi_detected', str(sound_id))
+            sio.emit('pi_detected', str(TO_DETECT))
