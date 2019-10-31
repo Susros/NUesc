@@ -1,3 +1,9 @@
+/**
+ * Dashboard to set dynamic sound list for Pi to listen.
+ * 
+ * @author Kelvin Yin
+ */
+
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
