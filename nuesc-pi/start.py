@@ -21,7 +21,7 @@ import socketio
 # Get server address for socket
 SERVER_URL = 'http://localhost:8080'
 
-if (len(sys.argv) != 2):
+if (len(sys.argv) == 2):
     SERVER_URL = sys.argv[1]
 
 # Load SVM Model
