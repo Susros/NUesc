@@ -34,6 +34,7 @@ try:
     mfcc_dataframe = cPickle.load(open(OUTPUT_DIR + 'mfcc_feature.p', 'rb'))
 except IOError:
     print("Could not load MFCC Data Frame. Please make sure to extract features before running this script.")
+    sys.exit(1)
 
 # Map label name with label id
 labels = []

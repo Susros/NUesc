@@ -6,6 +6,7 @@ C Parameters vs Gamma Parameters vs Accuracy.
 Author: Kelvin Yin
 """
 
+import sys
 import pickle
 import plotly.graph_objects as go
 
@@ -23,6 +24,7 @@ try:
     gridsearch = pickle.load(open(OUTPUT_DIR + 'svm_gridsearch.p', 'rb'))
 except IOError:
     print("Could not load SVM Grid Search result. Please make sure to run SVM Grid Search before running this script.")
+    sys.exit(1)
 
 ''' 
 Sort out data for plotting.

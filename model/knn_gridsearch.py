@@ -111,7 +111,7 @@ for metric in param_metric:
 
 
 # Save grid accuracy
-with open("knn_gridsearch.p", "wb") as fp:
+with open(OUTPUT + "knn_gridsearch.p", "wb") as fp:
     pickle.dump(grid_accuracy, fp)
 
 print("Grid search completed.")

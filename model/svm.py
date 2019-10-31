@@ -17,7 +17,7 @@ import pickle
 
 from six.moves import cPickle, range
 from sklearn.svm import SVC
-from sklearn.metrix import confusion_matrix
+from sklearn.metrics import confusion_matrix
 
 # Output directory
 OUTPUT_DIR = 'output/'
@@ -33,6 +33,7 @@ try:
     mfcc_dataframe = cPickle.load(open(OUTPUT_DIR + 'mfcc_feature.p', 'rb'))
 except IOError:
     print("Could not load MFCC Data Frame. Please make sure to extract features first.")
+	sys.exit(1)
 
 # Map label name with label id
 labels = []
@@ -108,7 +109,7 @@ matrix = matrix.astype('float') / matrix.sum(axis = 1)[:, numpy.newaxis]
 
 # Configure figure
 fig, ax = plt.subplots()
-im = ax.imgshow(matrix, interpolation = 'nearest', cmap = plt.cm.Blues)
+im = ax.imshow(matrix, interpolation = 'nearest', cmap = plt.cm.Blues)
 ax.figure.colorbar(im, ax = ax)
 ax.set(xticks = numpy.arange(matrix.shape[1]),
 	   yticks = numpy.arange(matrix.shape[0]),

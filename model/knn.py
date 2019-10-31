@@ -13,6 +13,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy
 import sklearn
+import pickle
 
 from six.moves import cPickle, range
 from sklearn.metrics import classification_report, confusion_matrix
@@ -26,13 +27,14 @@ OUTPUT_DIR = 'output/'
 METRIC = 'manhattan'
 
 # K Parmeter
-K = 1
+K = 6
 
 # Load MFCC Data Frame
 try:
     mfcc_dataframe = cPickle.load(open(OUTPUT_DIR + 'mfcc_feature.p', 'rb'))
 except IOError:
     print("Could not load MFCC Data Frame. Please make sure to extract features first.")
+    sys.exit(1)
 
 # Map label name with label id
 labels = []
@@ -92,3 +94,49 @@ pickle.dump(knn, open(OUTPUT_DIR + "knn_model.p", 'wb'))
 
 print()
 print("KNN Model has been saved to '"+ OUTPUT_DIR +"'")
+
+#####################################################
+
+''' Plot confusion matrix '''
+
+matrix = confusion_matrix(validation_label, knn_prediction)
+
+classes = [
+	'Air Conditioner',
+	'Car Horn',
+	'Children Playing',
+	'Dog Bark',
+	'Drilling',
+	'Engine Idling',
+	'Gun Shot',
+	'Jackhammer',
+	'Siren',
+	'Street Music'
+]
+
+# Normalise matrix
+matrix = matrix.astype('float') / matrix.sum(axis = 1)[:, numpy.newaxis]
+
+# Configure figure
+fig, ax = plt.subplots()
+im = ax.imshow(matrix, interpolation = 'nearest', cmap = plt.cm.Blues)
+ax.figure.colorbar(im, ax = ax)
+ax.set(xticks = numpy.arange(matrix.shape[1]),
+	   yticks = numpy.arange(matrix.shape[0]),
+	   xticklabels = classes, yticklabels = classes,
+	   title = 'KNN Classification Confusion Matrix',
+	   ylabel = 'True Label',
+	   xlabel = 'Predicted Label')
+
+plt.setp(ax.get_xticklabels(), rotation = 45, ha = 'right', rotation_mode = 'anchor')
+
+thresh = matrix.max() / 2
+for i in range(matrix.shape[0]):
+	for j in range(matrix.shape[1]):
+		ax.text(j, i, format(matrix[i, j], '.2f'),
+				ha = 'center', va = 'center',
+				color = 'white' if matrix[i, j] > thresh else 'black')
+
+fig.tight_layout()
+
+plt.show()
