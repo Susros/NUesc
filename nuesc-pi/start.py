@@ -18,6 +18,13 @@ import wave
 import pickle
 import socketio
 
+# Get server address for socket
+SERVER_URL = 'http://localhost:8080'
+
+if (len(sys.argv) != 2) {
+    SERVER_URL = sys.argv[1]
+}
+
 # Load SVM Model
 try:
     SVM = pickle.load(open('svm_model.p', 'rb'))
@@ -62,7 +69,7 @@ sound_class = [
 sio = socketio.Client()
 
 # Conenct to server
-sio.connect('http://127.0.0.1:8080')
+sio.connect(SERVER_URL)
 
 # Sound to detct for LED to light up
 TO_DETECT = 0
