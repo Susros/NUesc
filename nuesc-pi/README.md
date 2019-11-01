@@ -28,4 +28,4 @@ Before running the py, server has too be running first. Then, run the following 
 python3 start.py http[s]://[IP_ADDRESS]:[PORT]
 ```
 
-`start.py` accept one parameter argument for server address. 
+`start.py` accept one parameter argument for server address.
