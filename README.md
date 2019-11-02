@@ -14,11 +14,11 @@ This is the final year project of Software Engineering from University of Newcas
 
 ## Instruction
 
-There are four components: model, nuesc-pi, server, and webapp. The detail documentation for each component can be found in each folder. The instructions for setup are as follows:
+There are four components: model, nuesc-pi, server, and webapp. The *__detail documentation__* for each component can be found in each folder. The instructions for setup are as follows:
 
 * First train the machine learning model. There are two models: SVM and KNN.
 * Copy __nuesc-pi__ into Rasbperry Pi.
-* Copy trained model to __nuesc-pi__ folder on Raspberry Pi.
+* Copy trained model to __nuesc-pi__ folder on Raspberry Pi. Make sure to name the model file as *model.p*
 * Then, run the server from __server__ folder.
 * Finally, web application can be launched from __webapp__.
 
