@@ -26,7 +26,7 @@ if (len(sys.argv) == 2):
 
 # Load SVM Model
 try:
-    SVM = pickle.load(open('svm_model.p', 'rb'))
+    SVM = pickle.load(open('model.p', 'rb'))
 except IOError:
     print("SVM Model could not be loaded.")
     sys.exit(1)
