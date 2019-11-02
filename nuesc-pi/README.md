@@ -1,6 +1,6 @@
 # Sound Classifier in Pi
 
-The Respberry Pi records a sound and predict the event using the trained machine learning model. The Pi communicates with cloud server to send the message when the sound is detected. That particular sound can be set from cloud using web application.
+The Respberry Pi records a sound and predicts the event using the trained machine learning model. The Pi communicates with cloud server to send the message when the sound is detected. That particular sound can be set from cloud using web application.
 
 ## Requirement
 
@@ -11,18 +11,18 @@ The following hardwares are required:
 
 The following python packages are required:
 
-* numpy
-* pandas
-* sklearn
-* librosa
-* pyaudio
-* wave
-* pickle
-* socketio
+* __numpy__ *(pip3 install numpy)*
+* __pandas__ *(pip3 install pandas)*
+* __sklearn__ *(pip3 install sklearn)*
+* __librosa__ *(pip3 install librosa)*
+* __pyaudio__ *(pip3 install pyaudio)*
+* __wave__ *(pip3 install wave)*
+* __pickle__ *(pip3 install pickle)*
+* __socketio__ *(pip3 install python-socketio[client])*
 
 ## Usage
 
-Before running the py, server has too be running first. Then, run the following command:
+Before running the Pi, server has to be running first. Then, run the following command:
 
 ``` console
 python3 start.py http[s]://[IP_ADDRESS]:[PORT]
@@ -44,8 +44,6 @@ TO_DETECT = [SOUND_ID]
 
 Replace [SOUND_ID] with the ID of sound event to detect. Once the Pi detects that sound, the LED will light up on the board.
 
-## Future Work
+## Disclaimer
 
-Currently, the sounds are not being analysed in real-time. The Pi records a sound, then extract the feature and predict the sound event. After all that, the Pi will start recording the sound for next prediction.
-
-So, the future work will include improving the Pi to be able to detect the sound in real time.
+Currently, sounds are not being analysed in real-time. The Pi records a sound, then extracts the features and predicts the sound event. After all that, the Pi will start recording the sound for next prediction.

@@ -1,6 +1,6 @@
 # NUesc
 
-NUesc is IoT based environmental sound classification system for smart cities. The machine learning inference is deployed on Raspberry Pi to detect the events such as dog bark, car horn, gun shot and so on. The Raspberry Pi talks to cloud server when the event is detected. The web application is used to manage the sounds for Raspberry Pi to listen to.
+NUesc is IoT based environmental sound classification system for smart cities. The machine learning inference is deployed on Raspberry Pi to detect the events such as dog bark, car horn, gun shot and so on. The Raspberry Pi talks to the cloud server when the event is detected. The web application is used to manage the sounds for Raspberry Pi to listen to.
 
 This is the final year project of Software Engineering from University of Newcastle, Australia. This project is currently in prototype version.
 
